@@ -1,0 +1,90 @@
+:root {
+    --black: #000000;
+    --off-black: #111;
+    --gold: #D4AF37;
+    --light-gold: #FFD700;
+    --white: #fff;
+    --gray: #ccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--black);
+    color: var(--white);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black);
+    border-bottom: 2px solid var(--gold);
+    padding: 15px 10%;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.logo span {
+    color: var(--white);
+}
+
+nav a {
+    text-decoration: none;
+    margin-left: 18px;
+    color: var(--gold);
+    font-weight: bold;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--light-gold);
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--off-black);
+}
+
+.hero h2 {
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: var(--gray);
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 26px;
+    background: var(--gold);
+    border: none;
+    color: var(--black);
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: var(--light-gold);
+}
+
+footer {
+    text-align: center;
+    padding: 14px;
+    border-top: 2px solid var(--gold);
+    background: var(--off-black);
+    color: var(--gold);
+}
