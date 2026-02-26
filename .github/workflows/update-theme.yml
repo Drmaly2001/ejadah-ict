@@ -1,12 +1,10 @@
-name: Update to Black & Gold Theme
-permissions:
-  contents: write
+name: Update to Black & Gold Theme (Safe)
 
 on:
-  workflow_dispatch:   # allows manual trigger from GitHub
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update-theme:
@@ -14,148 +12,66 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Overwrite index.html
+      - name: Update Only Root Colors
         run: |
-          cat > index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <title>Ejadah ICT — Enterprise Solutions</title>
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <link rel="stylesheet" href="css/styles.css">
-          </head>
-          <body>
-
-              <header>
-                  <div class="logo">Ejadah<span>ICT</span></div>
-                  <nav>
-                      <a href="#">Home</a>
-                      <a href="#">Services</a>
-                      <a href="#">Projects</a>
-                      <a href="#">About</a>
-                      <a href="#">Contact</a>
-                  </nav>
-              </header>
-
-              <section class="hero">
-                  <h2>Innovative ICT & Cybersecurity</h2>
-                  <p>Delivering professional tech solutions for your business.</p>
-                  <button>Contact Us</button>
-              </section>
-
-              <footer>
-                  <p>© 2026 Ejadah ICT. All rights reserved.</p>
-              </footer>
-
-          </body>
-          </html>
-          EOF
-
-      - name: Ensure css folder exists
-        run: mkdir -p css
-
-      - name: Overwrite styles.css
-        run: |
-          cat > css/styles.css << 'EOF'
-          :root {
-              --black: #000000;
-              --off-black: #111;
-              --gold: #D4AF37;
-              --light-gold: #FFD700;
-              --white: #fff;
-              --gray: #ccc;
-          }
-
-          * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-          }
-
-          body {
-              font-family: Arial, sans-serif;
-              background: var(--black);
-              color: var(--white);
-          }
-
-          header {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              background: var(--black);
-              border-bottom: 2px solid var(--gold);
-              padding: 15px 10%;
-          }
-
-          .logo {
-              font-size: 28px;
-              font-weight: bold;
-              color: var(--gold);
-          }
-
-          .logo span {
-              color: var(--white);
-          }
-
-          nav a {
-              text-decoration: none;
-              margin-left: 18px;
-              color: var(--gold);
-              font-weight: bold;
-              transition: .3s;
-          }
-
-          nav a:hover {
-              color: var(--light-gold);
-          }
-
-          .hero {
-              text-align: center;
-              padding: 80px 20px;
-              background: var(--off-black);
-          }
-
-          .hero h2 {
-              font-size: 36px;
-              color: var(--gold);
-              margin-bottom: 12px;
-          }
-
-          .hero p {
-              color: var(--gray);
-              margin-bottom: 20px;
-          }
-
-          button {
-              padding: 10px 26px;
-              background: var(--gold);
-              border: none;
-              color: var(--black);
-              font-weight: bold;
-              cursor: pointer;
-              border-radius: 4px;
-          }
-
-          button:hover {
-              background: var(--light-gold);
-          }
-
-          footer {
-              text-align: center;
-              padding: 14px;
-              border-top: 2px solid var(--gold);
-              background: var(--off-black);
-              color: var(--gold);
-          }
-          EOF
+          if [ -f "css/styles.css" ]; then
+            sed -i '/:root {/,/}/c\
+:root {\
+  --gold: #D4AF37;\
+  --gold-light: #F5D76E;\
+  --gold-dark: #B8962E;\
+  --gold-glow: rgba(212, 175, 55, 0.18);\
+  --black: #0B0B0C;\
+  --black-soft: #121214;\
+  --black-light: #1A1A1D;\
+  --black-card: #161618;\
+  --green: var(--gold);\
+  --green-light: var(--gold-light);\
+  --green-dark: var(--gold-dark);\
+  --green-glow: var(--gold-glow);\
+  --blue: var(--gold);\
+  --blue-light: var(--gold-light);\
+  --blue-dark: var(--gold-dark);\
+  --blue-deep: var(--black);\
+  --blue-glow: var(--gold-glow);\
+  --white: #FFFFFF;\
+  --bg: var(--black);\
+  --bg-light: var(--black-soft);\
+  --bg-section: var(--black-light);\
+  --bg-dark: #000000;\
+  --bg-darker: #000000;\
+  --text: #F5F5F5;\
+  --text-secondary: #C9C9C9;\
+  --text-muted: #8A8A8A;\
+  --text-white: #FFFFFF;\
+  --text-on-dark: #CFCFCF;\
+  --border: rgba(212, 175, 55, 0.2);\
+  --border-green: rgba(212, 175, 55, 0.35);\
+  --border-blue: rgba(212, 175, 55, 0.35);\
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);\
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.5);\
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);\
+  --shadow-xl: 0 24px 60px rgba(0,0,0,0.7);\
+  --shadow-green: 0 8px 30px rgba(212,175,55,0.35);\
+  --shadow-blue: 0 8px 30px rgba(212,175,55,0.35);\
+  --radius-sm: 8px;\
+  --radius: 12px;\
+  --radius-lg: 20px;\
+  --radius-xl: 28px;\
+  --container: 1280px;\
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);\
+}' css/styles.css
+          else
+            echo "css/styles.css not found!"
+            exit 1
+          fi
 
       - name: Commit Changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add .
-          git commit -m "Automated update: Black & Gold Theme" || echo "No changes to commit"
+          git add css/styles.css
+          git commit -m "Theme updated to Black & Gold (safe root update)" || echo "No changes to commit"
           git push
