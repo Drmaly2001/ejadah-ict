@@ -1,4 +1,6 @@
 name: Update to Black & Gold Theme
+permissions:
+  contents: write
 
 on:
   workflow_dispatch:   # allows manual trigger from GitHub
